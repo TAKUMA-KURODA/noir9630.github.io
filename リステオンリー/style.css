@@ -24,26 +24,75 @@ a:hover {
 }
 
 /* =========================================
-   ヘッダー (Header)
+   ヘッダー (Header) 
    ========================================= */
 header {
-    background: linear-gradient(135deg, #e91e63, #f48fb1); /* グラデーション */
+    /* 背景のグラデーション設定：左上の色, 右下の色 */
+    background: linear-gradient(135deg, #e91e63, #f48fb1);
     color: white;
-    padding: 40px 20px;
+    
+    /* 【重要】ヘッダーの厚み（高さ）を決定する余白：上下 左右 */
+    /* 120pxを大きくするとヘッダーがより縦に広がる */
+    padding: 30px 20px; 
+    
+    /* ヘッダーの最低限の高さ：コンテンツが少なくてもこの高さは維持される */
+    min-height: auto; 
+    
+    /* 中の要素（ロゴや文字）を中央に寄せるための設定 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 header h1 {
-    margin: 0;
-    font-size: 2em;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.1); /* 文字に影をつける */
+    width: 100%;
+    margin: 0; /* 余計な余白を排除 */
+}
+/* ヘッダー内のロゴ画像設定 */
+header h1 img {
+    /* 横幅の最大値：画面端にロゴがくっつかないよう90%に制限 */
+    max-width: 95%; 
+    height: auto;
+    
+    /* 【重要】ロゴ自体の表示サイズ：この数値を大きくするとロゴが巨大になる */
+    max-height: 150px; 
+    
+    /* ロゴの下に作る空間：日付テキストとの距離を調整 */
+    margin-bottom: 10px; 
+    
+    /* ロゴに影をつけて浮き上がらせる効果（水平 垂直 ぼかし 色） */
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
 }
 
+/* ロゴの下にある日付や会場名のテキスト */
 header p {
     margin-top: 10px;
-    font-size: 1.1em;
-    opacity: 0.9;
+    /* 文字の大きさ：1.2emは標準の1.2倍 */
+    font-size: 1.2em; 
+    font-weight: bold;
+    /* 文字同士の間隔：値を大きくすると横に広がる */
+    letter-spacing: 0.1em; 
+    /* 文字の影：読みやすさを助ける */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   スマホ対応 (Responsive) 
+   ========================================= */
+/* 画面幅が 600px 以下のデバイス（スマホ等）に適用される設定 */
+@media (max-width: 600px) {
+    header {
+        /* スマホでは画面を占領しすぎないよう、余白を小さくする */
+        padding: 60px 15px;
+        min-height: 200px;
+    }
+    header h1 img {
+        /* スマホでのロゴの最大サイズ */
+        max-height: 120px;
+    }
 }
 
 /* =========================================
@@ -334,5 +383,27 @@ footer {
     th {
         background-color: #e91e63;
         color: white;
+    }
+}
+
+/* ロゴとキービジュアルの調整 */
+
+.keyvisual {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.keyvisual img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* スマホ表示での調整 */
+@media (max-width: 600px) {
+    .keyvisual {
+        margin-bottom: 20px;
     }
 }
